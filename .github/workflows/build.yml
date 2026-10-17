@@ -1,0 +1,48 @@
+# .github/workflows/build.yml
+# НАЗНАЧЕНИЕ: Автоматическая сборка debug-APK при каждом пуше в main.
+# ЗАЧЕМ: Чтобы получать готовый файл для установки без локальной сборки.
+
+name: Build APK
+
+on:
+  push:
+    branches: [ "main", "master" ] # Запускать при пуше в основную ветку
+  pull_request:
+    branches: [ "main", "master" ] # И при создании пулл-реквеста
+  workflow_dispatch: # Позволяет запускать сборку вручную кнопкой в GitHub
+
+jobs:
+  build:
+    # Используем последнюю версию Ubuntu, которую предоставляет GitHub
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Клонируем код из репозитория на виртуальную машину
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Устанавливаем Java 17 — стандарт для современных Android-проектов
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin' # Надёжный дистрибутив OpenJDK
+          cache: 'gradle' # Включаем кэш Gradle, чтобы сборка была быстрее
+
+      # 3. Даём права на выполнение для gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 4. Собираем debug-версию APK
+      # Именно debug, потому что для неё не нужен ключ подписи.
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      # 5. Загружаем готовый APK как артефакт, чтобы его можно было скачать
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          # Стандартный путь, куда Gradle кладёт debug-сборку
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 7 # Хранить файл 7 дней
