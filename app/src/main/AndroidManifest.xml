@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- app/src/main/AndroidManifest.xml -->
+<!-- НАЗНАЧЕНИЕ: объявить activity, разрешения и настройки приложения.
+     Без этого файла Android не запустит APK. -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Разрешение на сеть — понадобится для реального VPN.
+         Для mock-версии не обязательно, но пусть будет. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MDVPN">
+
+        <!-- Главный экран приложения. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MDVPN">
+
+            <!-- intent-filter с MAIN + LAUNCHER делает activity иконкой на рабочем столе. -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
