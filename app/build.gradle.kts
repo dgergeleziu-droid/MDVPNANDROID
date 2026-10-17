@@ -81,4 +81,17 @@ dependencies {
 
     // Инструменты для Preview в Android Studio (в APK не попадают).
     debugImplementation("androidx.compose.ui:ui-tooling")
+{
+    // ... то, что уже было ...
+
+    // ⬇️ ДОБАВЬ ЭТИ ДВЕ СТРОКИ ВНУТРЬ БЛОКА dependencies
+
+    // Lifecycle-aware collectAsState (для Compose + StateFlow)
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
+
+    // Расширенный набор иконок Material (power, shield, refresh и т.д.)
+    implementation("androidx.compose.material:material-icons-extended")
+
+    // ... то, что уже было ...
+    }
 }
