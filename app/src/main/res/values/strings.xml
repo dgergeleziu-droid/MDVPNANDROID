@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- app/src/main/res/values/strings.xml -->
+<!-- НАЗНАЧЕНИЕ: все текстовые строки приложения.
+     ЗАЧЕМ: чтобы можно было менять язык без перекомпиляции кода.
+     &amp; — это экранированный "&", иначе XML ругнётся. -->
+
+<resources>
+    <string name="app_name">M&amp;D VPN</string>
+</resources>
