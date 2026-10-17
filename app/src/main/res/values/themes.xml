@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- app/src/main/res/values/themes.xml -->
+<!-- НАЗНАЧЕНИЕ: базовая тема приложения (цвет системных баров).
+     Compose рисует поверх, но системные элементы берут цвета отсюда. -->
+
+<resources>
+    <!-- Тема без Action Bar. Тёмный фон под цвет нашей палитры. -->
+    <style name="Theme.MDVPN" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">#0E1116</item>
+        <item name="android:navigationBarColor">#0E1116</item>
+        <item name="android:windowBackground">#0E1116</item>
+    </style>
+</resources>
