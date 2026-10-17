@@ -1,0 +1,23 @@
+# .gitignore
+# НАЗНАЧЕНИЕ: файлы, которые не должны попадать в Git.
+# ЗАЧЕМ: build-мусор, локальные настройки IDE, ключи подписи.
+
+# Gradle и Android
+.gradle/
+build/
+app/build/
+*.apk
+*.aab
+
+# Локальные SDK-пути (у каждого разработчика свои)
+local.properties
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+
+# Ключи подписи (никогда не коммитить)
+*.keystore
+*.jks
+keystore.properties
